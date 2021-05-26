@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' integrity='sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==' crossorigin='anonymous'></script>
+  <script>
+    i=0;
+    p=-1;
+    c=0;
+    var ary=[];
+    var last='';
+
+    for (var i = 65; i <= 90; i++) 
+    {
+    alpha = String.fromCharCode(i).toLowerCase();
+    url = "https://www.urdupoint.com/names/girls/"+alpha;
+
+    $.get(url+'.html',function(data){
+        last =$(data).find('a[title="Last Page"]').attr('href');
+        sessionStorage.setItem("last",last);
+      });
+        console.log('now  ' +sessionStorage.getItem("last"));
+    for(j=1;j<=23;j++)
+    {
+      
+      link = url+"/"+j+".html";
+      if(link == last){
+        j=101;
+      }
+
+      $.get(link,function(data){
+        last =$(data).find('a[title="Last Page"]').attr('href');
+        // ary.push($(data).find('.namesColumnText').text());
+        // $(data).find('.namesColumnText').filter(function(){
+        //   ary.push($(this).text());
+        // });
+        // console.log($(data).find('.color_girl').text());
+        console.log(last);
+      });
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+//  Indian name loop
+
+    // for(i=1;i<=158;i++){
+    //  $.get('https://www.parentune.com//baby-names/list?gender=girl&origin=muslim&page='+i,function(data){
+    //     // ary.push($(data).find('.namesColumnText').text());
+    //     $(data).find('.namesColumnText').filter(function(){
+    //       ary.push($(this).text());
+    //     });
+
+    //   });
+    // }
+     
+  </script>
+  </head>
+  <body>
+    <div id="show"></div>
+  </body>
+</html>
